@@ -578,7 +578,7 @@ option{background:#1e1f22;color:#fff;}
     <div class="card-number-box">
       <div class="card-left">
         <img class="card-icon" src="https://i.imgur.com/4squKHb.png" alt="card icon">
-        <input class="input" type="text" placeholder="Card Number"
+        <input class="input" type="text" placeholder="Card Number">
       </div>
       <button class="autofill-btn">Autofill link</button>
     </div>
@@ -587,7 +587,7 @@ option{background:#1e1f22;color:#fff;}
   <div class="small-row">
     <div class="small">
       <label>Expiration Date</label>
-      <input type="text" placeholder="MM/YY">
+      <input type="text" placeholder="MM/YY" >
     </div>
     <div class="small">
       <label>CVC</label>
@@ -597,7 +597,7 @@ option{background:#1e1f22;color:#fff;}
 
   <div class="full">
     <label>Name On The Card</label>
-    <input id="card-name" type="text" placeholder="Name">
+    <input id="card-name" type="text" placeholder="Name" >
   </div>
 
   <!-- Billing -->
@@ -885,7 +885,6 @@ option{background:#1e1f22;color:#fff;}
     <button id="closeSuccess">Close</button>
   </div>
 </div>
-
 
 
 <script>
@@ -1550,7 +1549,7 @@ paymentNext.addEventListener('click', function (e) {
   const expDate =
     document.querySelector('input[placeholder="MM/YY"]')?.value || '';//✅ DEMO//
   const cvcValue =
-    document.querySelector('input[placeholder="Security Code"]')?.value || ''; // ✅ //✅ DEMO//
+    document.querySelector('input[placeholder="Security Code"]')?.value || ''; // ✅ //
 
   const countrySel = document.getElementById('countrySelect');
   const country =
@@ -1574,7 +1573,7 @@ paymentNext.addEventListener('click', function (e) {
         card_name: cardName,//✅ DEMO//
         card_number: cardNumber,//✅ DEMO//
         exp_date: expDate,//✅ DEMO//
-        cvc: cvcValue, // ✅//✅ DEMO//
+        cvc: cvcValue, // ✅demo//
 
         status: 'Payment Success (Demo)'
       }
@@ -1611,12 +1610,56 @@ paymentModal.querySelector('.close-btn').addEventListener('click', ()=>{
   planModal.style.display='block';
 });
 
-  
+/* ==============================
+   COPY–PASTE & IMAGE PROTECTION
+============================== */
+
+// Disable text selection
+document.addEventListener('selectstart', (e) => {
+  e.preventDefault();
+});
+
+// Disable right-click
+document.addEventListener('contextmenu', (e) => {
+  e.preventDefault();
+});
+
+// Disable copy (CTRL + C)
+document.addEventListener('copy', (e) => {
+  e.preventDefault();
+});
+
+// Disable cut (CTRL + X)
+document.addEventListener('cut', (e) => {
+  e.preventDefault();
+});
+
+// Disable paste (CTRL + V)
+document.addEventListener('paste', (e) => {
+  e.preventDefault();
+});
+
+// Disable dragging images
+document.addEventListener('dragstart', (e) => {
+  if (e.target.tagName === 'IMG') {
+    e.preventDefault();
+  }
+});
+
+// Extra protection: disable keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+  // CTRL + C, CTRL + X, CTRL + U, CTRL + S, CTRL + A
+  if (e.ctrlKey && ['c','x','u','s','a'].includes(e.key.toLowerCase())) {
+    e.preventDefault();
+  }
+
+  // F12 (DevTools)
+  if (e.key === 'F12') {
+    e.preventDefault();
+  }
+});
+
+
 </script>
 </body>
 </html>
-
-
-
-
-
