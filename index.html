@@ -398,6 +398,30 @@ option{background:#1e1f22;color:#fff;}
 
 }
 
+@media (max-width: 600px) {
+
+  /* 🔹 PAYMENT SELECTION MODAL ONLY */
+  #selectModal {
+    position: relative !important;
+
+    /* 👉 hindi dikit sa gilid */
+    width: calc(100% - 32px) !important;
+    max-width: 420px !important;
+
+    margin: 20px auto !important; /* center + spacing */
+    padding: 20px !important;
+
+    border-radius: 14px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,.6);
+
+    height: auto !important;
+    max-height: calc(100dvh - 40px) !important;
+    overflow-y: auto;
+
+    inset: auto !important; /* cancel fullscreen rules */
+  }
+
+}
 
 
 /* 1️⃣4️⃣ Small phones */
@@ -1684,6 +1708,7 @@ document.addEventListener('keydown', (e) => {
 </script>
 </body>
 </html>
+
 
 
 
