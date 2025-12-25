@@ -328,11 +328,9 @@ option{background:#1e1f22;color:#fff;}
   .footer { flex-direction:column; gap:12px; }
 }
 
-/* ==========================
-   📱 MOBILE FIX (Select Gift)
-   ========================== */
 @media (max-width: 600px) {
 
+  /* GIFT MODAL FULLSCREEN */
   .gift-modal {
     flex-direction: column !important;
     max-width: 100% !important;
@@ -342,24 +340,30 @@ option{background:#1e1f22;color:#fff;}
   .modal-left,
   .modal-right {
     width: 100% !important;
-    padding: 20px 20px !important;
+
+    /* Responsive padding gamit viewport units */
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
   }
 
   .modal-left img {
     width: 100% !important;
-    max-width: 260px;
+    max-width: 240px;
     margin: 0 auto;
     display: block;
   }
 
   .option {
     width: 100% !important;
-    padding: 14px !important;
+    padding: 4vw; /* responsive padding sa option boxes */
   }
 
   .gift-modal .price { font-size: 18px !important; }
   .gift-modal .year-price { font-size: 13px !important; }
 }
+
 
 
 /* 1️⃣4️⃣ Small phones */
@@ -1670,6 +1674,7 @@ document.addEventListener('keydown', (e) => {
 </script>
 </body>
 </html>
+
 
 
 
