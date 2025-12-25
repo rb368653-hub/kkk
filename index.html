@@ -328,24 +328,31 @@ option{background:#1e1f22;color:#fff;}
   .footer { flex-direction:column; gap:12px; }
 }
 
+/* ==========================
+   📱 MOBILE FIX (Select Gift + Card Payment)
+   ========================== */
 @media (max-width: 600px) {
 
   /* GIFT MODAL FULLSCREEN */
   .gift-modal {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
     flex-direction: column !important;
-    max-width: 100% !important;
-    padding: 0 !important;
+    padding: 2vh 5vw !important;
+    overflow-y: auto;
+    z-index: 9999;
+    -webkit-overflow-scrolling: touch;
   }
 
   .modal-left,
   .modal-right {
     width: 100% !important;
-
-    /* Responsive padding gamit viewport units */
-    padding-top: 2vh;
-    padding-bottom: 2vh;
-    padding-left: 5vw;
-    padding-right: 5vw;
+    padding: 0 !important;
   }
 
   .modal-left img {
@@ -357,27 +364,67 @@ option{background:#1e1f22;color:#fff;}
 
   .option {
     width: 100% !important;
-    padding: 4vw; /* responsive padding sa option boxes */
+    padding: 4vw;
   }
 
   .gift-modal .price { font-size: 18px !important; }
   .gift-modal .year-price { font-size: 13px !important; }
+
+  /* CARD INPUT + BILLING FULLSCREEN */
+  #paymentModal,
+  .billing-section {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 2vh 5vw !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow-y: auto;
+    z-index: 9999;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #paymentModal .modal-header {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  #paymentModal .close-btn {
+    position: absolute;
+    top: 1.5vh;
+    right: 5vw;
+    font-size: 20px;
+    z-index: 10000;
+  }
+
+  .footer {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    background: var(--modal);
+    padding: 12px 5vw;
+    border-top: 1px solid #2c2c30;
+    z-index: 20;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
-
-
 
 /* 1️⃣4️⃣ Small phones */
 @media (max-width:500px) {
-
-  /* Keep buttons in one line, same as desktop */
   .footer {
     flex-direction: row !important;
     justify-content: space-between !important;
     align-items: center !important;
     width: 100%;
   }
-
-  /* Button sizing for small screen */
   .footer button {
     padding: 10px 14px;
     font-size: 14px;
@@ -392,34 +439,14 @@ option{background:#1e1f22;color:#fff;}
   }
 }
 
-
-
-
-
-/* 2️⃣0️⃣ Ultra tiny (280px and below) */
-/* 📱 Ultra tiny screens (≤ 280px width) */
+/* Ultra tiny screens (≤ 280px width) */
 @media (max-width: 280px) {
-  body {
-    padding: 4px;
-  }
-
-  .option {
-    padding: 8px;
-    font-size: 12px;
-  }
-
-  .card-icons img {
-    height: 16px;
-  }
-
-  /* ✅ Huwag fixed min-width — gamitin responsive width */
+  body { padding: 4px; }
+  .option { padding: 8px; font-size: 12px; }
+  .card-icons img { height: 16px; }
   .small input,
   .full input,
-  .card-number-box {
-    width: 100%;
-    font-size: 12px;
-    padding: 6px 8px;
-  }
+  .card-number-box { width: 100%; font-size: 12px; padding: 6px 8px; }
 }
 
 </style>
@@ -1674,6 +1701,7 @@ document.addEventListener('keydown', (e) => {
 </script>
 </body>
 </html>
+
 
 
 
