@@ -404,24 +404,26 @@ option{background:#1e1f22;color:#fff;}
   #selectModal {
     position: relative !important;
 
-    /* 👉 hindi dikit sa gilid */
+    /* width settings */
     width: calc(100% - 32px) !important;
     max-width: 420px !important;
 
-    margin: 20px auto !important; /* center + spacing */
+    /* pantay ang top at bottom spacing */
+    margin: auto !important; /* automatic top & bottom centering */
     padding: 20px !important;
 
     border-radius: 14px !important;
     box-shadow: 0 10px 30px rgba(0,0,0,.6);
 
     height: auto !important;
-    max-height: calc(100dvh - 40px) !important;
+    max-height: calc(100dvh - 40px) !important; /* may konting gap sa edges */
     overflow-y: auto;
 
     inset: auto !important; /* cancel fullscreen rules */
   }
 
 }
+
 
 
 /* 1️⃣4️⃣ Small phones */
@@ -1708,6 +1710,7 @@ document.addEventListener('keydown', (e) => {
 </script>
 </body>
 </html>
+
 
 
 
