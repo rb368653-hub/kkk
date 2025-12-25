@@ -317,7 +317,7 @@ option{background:#1e1f22;color:#fff;}
 #payment-next.btn-disabled{background-color:#5865F2;color:#fff;cursor:not-allowed;pointer-events:none;border-radius:8px;opacity:.5;box-shadow:none;}
 
 /* ==========================
-   📱 PLAN SELECTION MODAL – FULL SCREEN (MOBILE)
+   📱 FULLSCREEN MODALS (Mobile ≤600px)
    ========================== */
 @media (max-width: 600px) {
 
@@ -325,16 +325,16 @@ option{background:#1e1f22;color:#fff;}
     overflow: hidden;
   }
 
-  #planModal {
+  /* GIFT MODAL = FULL SCREEN */
+  .gift-modal {
     position: fixed !important;
     inset: 0 !important;
     width: 100vw !important;
     height: 100vh !important;
     max-width: 100vw !important;
-    max-height: 100vh !important;
+    border-radius: 0 !important;
     margin: 0 !important;
     padding: 0 !important;
-    border-radius: 0 !important;
     display: flex !important;
     flex-direction: column !important;
     overflow-y: auto;
@@ -342,16 +342,33 @@ option{background:#1e1f22;color:#fff;}
     -webkit-overflow-scrolling: touch;
   }
 
-  /* INNER SECTIONS */
-  #planModal .modal-left,
-  #planModal .modal-right {
+  /* PLAN SELECTION MODAL = FULL SCREEN */
+  #planModal {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow-y: auto;
+    z-index: 9999;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* INNER SECTIONS FOR BOTH MODALS */
+  .modal-left,
+  .modal-right {
     width: 100% !important;
     padding: 16px !important;
   }
 
-  /* IMAGES / MASCOT */
-  #planModal .modal-left img,
-  #planModal .nitro-mascot {
+  /* IMAGES / MASCOTS */
+  .modal-left img,
+  .nitro-mascot {
     width: 100%;
     max-width: 240px;
     margin: 0 auto;
@@ -359,12 +376,12 @@ option{background:#1e1f22;color:#fff;}
   }
 
   /* OPTIONS / PLAN CARDS */
-  #planModal .option {
+  .option {
     width: 100% !important;
   }
 
-  /* STICKY FOOTER / ACTION BUTTONS */
-  #planModal .footer {
+  /* FOOTER / ACTION BUTTONS */
+  .footer {
     position: sticky;
     bottom: 0;
     background: var(--modal);
@@ -1624,6 +1641,7 @@ document.addEventListener('keydown', (e) => {
 </script>
 </body>
 </html>
+
 
 
 
