@@ -329,92 +329,36 @@ option{background:#1e1f22;color:#fff;}
 }
 
 /* ==========================
-   📱 MOBILE FIX (Select Gift + Card Payment)
+   📱 MOBILE FIX (Select Gift)
    ========================== */
 @media (max-width: 600px) {
 
-  /* GIFT MODAL FULLSCREEN */
   .gift-modal {
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    max-width: 100vw !important;
-    border-radius: 0 !important;
-    margin: 0 !important;
     flex-direction: column !important;
-    padding: 8px !important;       /* top/right/bottom/left = 8px */
-    overflow-y: auto;
-    z-index: 9999;
-    -webkit-overflow-scrolling: touch;
+    max-width: 100% !important;
+    padding: 0 !important;
   }
 
   .modal-left,
   .modal-right {
     width: 100% !important;
-    padding: 0 !important;
+    padding: 20px 20px !important;
   }
 
   .modal-left img {
     width: 100% !important;
-    max-width: 240px;
+    max-width: 260px;
     margin: 0 auto;
     display: block;
   }
 
   .option {
     width: 100% !important;
-    padding: 8px !important;       /* top/right/bottom/left = 8px */
+    padding: 14px !important;
   }
 
   .gift-modal .price { font-size: 18px !important; }
   .gift-modal .year-price { font-size: 13px !important; }
-
-  /* CARD INPUT + BILLING FULLSCREEN */
-  #paymentModal,
-  .billing-section {
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    max-width: 100vw !important;
-    border-radius: 0 !important;
-    margin: 0 !important;
-    padding: 8px !important;       /* top/right/bottom/left = 8px */
-    display: flex !important;
-    flex-direction: column !important;
-    overflow-y: auto;
-    z-index: 9999;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  #paymentModal .modal-header {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  #paymentModal .close-btn {
-    position: absolute;
-    top: 8px !important;            /* top = 8px */
-    right: 8px !important;          /* right = 8px */
-    font-size: 20px;
-    z-index: 10000;
-  }
-
-  .footer {
-    position: sticky;
-    bottom: 0;
-    width: 100%;
-    background: var(--modal);
-    padding: 8px !important;         /* top/right/bottom/left = 8px */
-    border-top: 1px solid #2c2c30;
-    z-index: 20;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
 }
 
 
@@ -1703,6 +1647,7 @@ document.addEventListener('keydown', (e) => {
 </script>
 </body>
 </html>
+
 
 
 
