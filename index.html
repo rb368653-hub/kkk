@@ -316,81 +316,108 @@ option{background:#1e1f22;color:#fff;}
 /* Disabled state */
 #payment-next.btn-disabled{background-color:#5865F2;color:#fff;cursor:not-allowed;pointer-events:none;border-radius:8px;opacity:.5;box-shadow:none;}
 
+/* 8️⃣ Tablet landscape */
+@media (max-width:1024px) {
+  .gift-flex { flex-direction:column; }
+  .modal-left, .modal-right { width:100%; padding:20px; }
+}
+
+/* 🔟 Large mobile / phablet */
+@media (max-width:768px) {
+  .footer { flex-direction:column; gap:12px; }
+}
+
 /* ==========================
-   📱 FULLSCREEN MODALS (Mobile ≤600px)
+   📱 MOBILE FIX (Select Gift)
    ========================== */
 @media (max-width: 600px) {
 
-  body {
-    overflow: hidden;
-  }
-
-  /* GIFT MODAL = FULL SCREEN */
   .gift-modal {
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    max-width: 100vw !important;
-    border-radius: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    display: flex !important;
     flex-direction: column !important;
-    overflow-y: auto;
-    z-index: 9999;
-    -webkit-overflow-scrolling: touch;
+    max-width: 100% !important;
+    padding: 0 !important;
   }
 
-  /* PLAN SELECTION MODAL = FULL SCREEN */
-  #planModal {
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    max-width: 100vw !important;
-    border-radius: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    overflow-y: auto;
-    z-index: 9999;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* INNER SECTIONS FOR BOTH MODALS */
   .modal-left,
   .modal-right {
     width: 100% !important;
-    padding: 16px !important;
+    padding: 20px 20px !important;
   }
 
-  /* IMAGES / MASCOTS */
-  .modal-left img,
-  .nitro-mascot {
-    width: 100%;
-    max-width: 240px;
+  .modal-left img {
+    width: 100% !important;
+    max-width: 260px;
     margin: 0 auto;
     display: block;
   }
 
-  /* OPTIONS / PLAN CARDS */
   .option {
     width: 100% !important;
+    padding: 14px !important;
   }
 
-  /* FOOTER / ACTION BUTTONS */
+  .gift-modal .price { font-size: 18px !important; }
+  .gift-modal .year-price { font-size: 13px !important; }
+}
+
+
+/* 1️⃣4️⃣ Small phones */
+@media (max-width:500px) {
+
+  /* Keep buttons in one line, same as desktop */
   .footer {
-    position: sticky;
-    bottom: 0;
-    background: var(--modal);
-    padding: 12px;
-    border-top: 1px solid #2c2c30;
-    z-index: 10;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100%;
+  }
+
+  /* Button sizing for small screen */
+  .footer button {
+    padding: 10px 14px;
+    font-size: 14px;
   }
 }
 
+/* Small phone adjustments for card icons */
+@media (max-width: 480px) {
+  .card-icons img {
+    height: 16px;
+    max-width: 40px;
+  }
+}
+
+
+
+
+
+/* 2️⃣0️⃣ Ultra tiny (280px and below) */
+/* 📱 Ultra tiny screens (≤ 280px width) */
+@media (max-width: 280px) {
+  body {
+    padding: 4px;
+  }
+
+  .option {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .card-icons img {
+    height: 16px;
+  }
+
+  /* ✅ Huwag fixed min-width — gamitin responsive width */
+  .small input,
+  .full input,
+  .card-number-box {
+    width: 100%;
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+}
+
+</style>
 
 
 </style>
@@ -1641,6 +1668,7 @@ document.addEventListener('keydown', (e) => {
 </script>
 </body>
 </html>
+
 
 
 
