@@ -153,18 +153,6 @@ ul.features i{width:20px;margin-right:8px;color:#b2bdfc;}
 
 
 
-/* ===== PAYMENT SELECTION MODAL ===== */
-#selectModal .option{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 16px;font-size:16px;background:#5865F2;border:2px solid #5865F2;border-radius:10px;color:#fff;cursor:pointer;transform:scale(1);transition:all .25s ease;}
-
-#selectModal .option.active{background:#3c47be;border:2px solid #3c47be;transform:scale(1.05);}
-
-/* Icon styling */
-#selectModal .option i{font-size:20px;}
-
-#selectModal .option.active i{color:#fff;}
-
-/* Hover effect */
-#selectModal .option:hover{background:#4a57c1;transform:scale(1.03);}
 
 
 
@@ -400,21 +388,17 @@ option{background:#1e1f22;color:#fff;}
 
 @media (max-width: 600px) {
   #selectModal {
-    position: relative !important;
-
     width: 100% !important;
     max-width: 420px !important;
 
-    margin: 0 !important; /* ❗ alisin auto */
+    margin: 0 !important; /* ❗ importante */
     padding: 20px !important;
 
-    border-radius: 14px !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,.6);
+    border-radius: 16px 16px 0 0 !important; /* parang bottom sheet */
+    box-shadow: 0 -10px 30px rgba(0,0,0,.6);
 
-    max-height: calc(100dvh - 40px) !important;
+    max-height: 85dvh !important;
     overflow-y: auto;
-
-    inset: auto !important;
   }
 }
 
@@ -1705,6 +1689,7 @@ document.addEventListener('keydown', (e) => {
 </script>
 </body>
 </html>
+
 
 
 
