@@ -319,20 +319,6 @@ option{background:#1e1f22;color:#fff;}
 
 
 
-
-
-/* 8️⃣ Tablet landscape */
-@media (max-width:1024px) {
-  .gift-flex { flex-direction:column; }
-  .modal-left, .modal-right { width:100%; padding:20px; }
-}
-
-/* 🔟 Large mobile / phablet */
-@media (max-width:768px) {
-  .footer { flex-direction:column; gap:12px; }
-}
-
-
 /* 8️⃣ Tablet landscape */
 @media (max-width:1024px) {
   .gift-flex { flex-direction:column; }
@@ -369,7 +355,7 @@ option{background:#1e1f22;color:#fff;}
     border-radius: 0 !important;
     box-shadow: none !important;
 
-    /* ❗ HUWAG mag set ng display dito */
+    
     flex-direction: column;
 
     overflow-y: auto !important;
@@ -470,61 +456,8 @@ option{background:#1e1f22;color:#fff;}
 }
 
 
-/* 1️⃣4️⃣ Small phones */
-@media (max-width:500px) {
-
-  /* Keep buttons in one line, same as desktop */
-  .footer {
-    flex-direction: row !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    width: 100%;
-  }
-
-  /* Button sizing for small screen */
-  .footer button {
-    padding: 10px 14px;
-    font-size: 14px;
-  }
-}
-
-/* Small phone adjustments for card icons */
-@media (max-width: 480px) {
-  .card-icons img {
-    height: 16px;
-    max-width: 40px;
-  }
-}
 
 
-
-
-
-/* 2️⃣0️⃣ Ultra tiny (280px and below) */
-/* 📱 Ultra tiny screens (≤ 280px width) */
-@media (max-width: 280px) {
-  body {
-    padding: 4px;
-  }
-
-  .option {
-    padding: 8px;
-    font-size: 12px;
-  }
-
-  .card-icons img {
-    height: 16px;
-  }
-
-  /* ✅ Huwag fixed min-width — gamitin responsive width */
-  .small input,
-  .full input,
-  .card-number-box {
-    width: 100%;
-    font-size: 12px;
-    padding: 6px 8px;
-  }
-}
 
 </style>
 
@@ -1019,6 +952,7 @@ option{background:#1e1f22;color:#fff;}
   </div>
 </div>
 
+</body>
 
 <script>
 /* ==============================
@@ -1422,6 +1356,7 @@ function renderForm(code) {
           f === "Prefecture"  ||
           f === "Street name, house number, subdivision" ||
           f === "Street, building, appartment" ||
+          f === "Street, Building number" ||
           f === "Plot/house number, moo/lane and street name" ||
           f === "Address" 
         ) id = "address-line-1";
@@ -1441,13 +1376,13 @@ function renderForm(code) {
           f === "Judet / Sector"  ||
           f === "Center of population (city, village)"  ||
           f === "Subdistrict"  ||
+          f === "More address information" ||
           f === "More address details"
         ) id = "address-line-2";
 
         if (
           f === "Address line 3" ||
           f === "City / Town / Village" ||
-          f === "Street, Building number" ||
           f === "City / District" ||
           f === "Emirate" ||
           f === "Suburb" ||
@@ -1486,7 +1421,6 @@ function renderForm(code) {
 
         if (
           f === "Address line 4" ||
-          f === "More address information" ||
           f === "State / Province / Region" ||
           f === "Province" ||
           f === "Region"||
@@ -1541,6 +1475,7 @@ function renderForm(code) {
           field === "Prefecture"  ||
           field === "Street name, house number, subdivision" ||
           field === "Street, building, appartment" ||
+          field === "Street, Building number" ||
           field === "Plot/house number, moo/lane and street name" ||
           field === "Address"
         ) id = "address-line-1";
@@ -1560,13 +1495,13 @@ function renderForm(code) {
           field === "Judet / Sector"  ||
           field === "Center of population (city, village)"  ||
           field === "Subdistrict"  ||
+          field === "More address information" ||
           field === "More address details"
         ) id = "address-line-2";
 
         if (
           field === "Address line 3" ||
           field === "City / Town / Village" ||
-          field === "Street, Building number" ||
           field === "City / District" ||
           field === "Emirate" ||
           field === "Suburb" ||
@@ -1603,7 +1538,6 @@ function renderForm(code) {
 
         if (
           field === "Address line 4" ||
-          field === "More address information" ||
           field === "State / Province / Region" ||
           field === "Province" ||
           field === "Region"  ||
