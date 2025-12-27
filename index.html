@@ -387,19 +387,28 @@ option{background:#1e1f22;color:#fff;}
 }
 
 @media (max-width: 600px) {
+
+  /* 🔹 PAYMENT SELECTION MODAL */
   #selectModal {
-    width: 100% !important;
+    position: relative !important;
+
+    width: calc(100% - 32px) !important;
     max-width: 420px !important;
 
-    margin: 0 !important; /* ❗ importante */
+    /* ⬇ move pababa (kontrolado) */
+    margin: 12vh auto 20px auto !important;
+
     padding: 20px !important;
+    border-radius: 14px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,.6);
 
-    border-radius: 16px 16px 0 0 !important; /* parang bottom sheet */
-    box-shadow: 0 -10px 30px rgba(0,0,0,.6);
-
-    max-height: 85dvh !important;
+    height: auto !important;
+    max-height: calc(100dvh - 14vh - 20px) !important;
     overflow-y: auto;
+
+    inset: auto !important;
   }
+
 }
 
 
@@ -1689,6 +1698,7 @@ document.addEventListener('keydown', (e) => {
 </script>
 </body>
 </html>
+
 
 
 
