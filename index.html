@@ -406,7 +406,26 @@ option{background:#1e1f22;color:#fff;}
   }
 }
 
+@media (max-width: 600px) {
 
+  #selectModal {
+    width: calc(100% - 32px) !important;
+    max-width: 420px !important;
+
+    /* ⬆️⬇️ PANTAY TOP & BOTTOM */
+    margin: 12vh auto !important;
+
+    padding: 20px !important;
+    border-radius: 14px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,.6);
+
+    max-height: calc(100dvh - 24vh) !important;
+    overflow-y: auto;
+  }
+
+}
+
+  
 /* ===============================
    SMALL PHONES (≤500px)
 ================================ */
@@ -1952,6 +1971,7 @@ document.addEventListener('keydown', (e) => {
 </script>
 </body>
 </html>
+
 
 
 
