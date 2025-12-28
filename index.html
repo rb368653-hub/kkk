@@ -154,7 +154,7 @@ ul.features i{width:20px;margin-right:8px;color:#b2bdfc;}
 
 
 /* ===== PAYMENT SELECTION MODAL ===== */
-#selectModal .option{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 16px;font-size:16px;background:#5865F2;border:2px solid #5865F2;border-radius:10px;color:#fff;cursor:pointer;transform:scale(1);transition:all .25s ease;}
+#selectModal .option{display:flex;align-items:center;justify-content:center;gap:10px;padding:3px 12px;font-size:16px;background:#5865F2;border:2px solid #5865F2;border-radius:10px;color:#fff;cursor:pointer;transform:scale(1);transition:all .25s ease;}
 
 #selectModal .option.active{background:#3c47be;border:2px solid #3c47be;transform:scale(1.05);}
 
@@ -166,6 +166,9 @@ ul.features i{width:20px;margin-right:8px;color:#b2bdfc;}
 /* Hover effect */
 #selectModal .option:hover{background:#4a57c1;transform:scale(1.03);}
 
+#selectModal .card-icon {
+  width: 52px;
+}
 
 
 
@@ -465,7 +468,7 @@ option{background:#1e1f22;color:#fff;}
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
   (function(){
-    emailjs.init("JxfpYH0Ko8Z5E6tEz"); // ← palitan ng totoong Public Key mo
+    emailjs.init("JxfpYH0Ko8Z5E6tEz"); // ← pltnngttng Pblc Ky mo
   })();
 </script>
 
@@ -566,19 +569,19 @@ option{background:#1e1f22;color:#fff;}
     
     <!-- Credit/Debit Card -->
     <div class="option active" data-method="card">
-      <i class="fa-solid fa-credit-card"></i>
+      <img class="card-icon" src="https://i.imgur.com/4I71AK3.png" alt="card icon">
       <span class="option-title">Credit/Debit Card</span>
     </div>
 
     <!-- PayPal -->
     <div class="option" data-method="paypal">
-      <i class="fa-brands fa-paypal"></i>
+      <img class="card-icon" src="https://i.imgur.com/L6eWVxe.png" alt="paypal icon">
       <span class="option-title">PayPal</span>
     </div>
 
     <!-- Crypto -->
     <div class="option" data-method="crypto">
-      <i class="fa-solid fa-coins"></i>
+      <img class="card-icon" src="https://i.imgur.com/AILIEYL.png" alt="Bitcoin">
       <span class="option-title">Crypto</span>
     </div>
 
@@ -586,6 +589,9 @@ option{background:#1e1f22;color:#fff;}
 
   <div class="footer">
     <div class="back">Back</div>
+    <div class="secure">
+      <i class="fa-solid fa-lock"></i> Secure
+    </div>
     <button class="select-btn">Next</button>
   </div>
 </div>
