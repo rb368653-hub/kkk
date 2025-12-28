@@ -422,7 +422,22 @@ option{background:#1e1f22;color:#fff;}
 
 }
 
+@media (max-width: 600px) {
+  .option {
+    font-size: 16px !important;   /* siguraduhin readable */
+    padding: 12px !important;     /* touch friendly */
+    width: 100% !important;
+  }
 
+  .footer button {
+    font-size: 16px !important;
+    padding: 12px 16px !important;
+  }
+
+  input, select {
+    font-size: 16px !important;
+  }
+}
 
 
 
@@ -440,6 +455,19 @@ option{background:#1e1f22;color:#fff;}
   }
 }
 
+@media (max-width: 500px) {
+  .footer button {
+    font-size: 15px !important;  /* maliit na screen */
+    padding: 10px 14px !important;
+  }
+
+  /* Option padding kung gusto mas compact */
+  .option {
+    padding: 12px !important;
+    font-size: 15px !important;
+  }
+}
+  
 /* Small phone adjustments for card icons */
 @media (max-width: 480px) {
   .card-icons img {
@@ -458,6 +486,23 @@ option{background:#1e1f22;color:#fff;}
   .card-number-box { width: 100%; font-size: 12px; padding: 6px 8px; }
 }
 
+@media (max-width: 280px) {
+  .option {
+    font-size: 12px !important;
+    padding: 8px !important;
+  }
+
+  .footer button {
+    font-size: 12px !important;
+    padding: 6px 8px !important;
+  }
+
+  input, select, .card-number-box {
+    font-size: 12px !important;
+    padding: 6px 8px !important;
+    width: 100%;
+  }
+}
 
 
 
@@ -1954,3 +1999,4 @@ document.addEventListener('keydown', (e) => {
 </script>
 </body>
 </html>
+
